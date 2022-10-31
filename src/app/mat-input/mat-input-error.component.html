@@ -1,0 +1,6 @@
+<ng-content>
+  <mat-error *ngIf="formControl.touched && formControl.invalid">
+    <span *ngIf="formControl.errors.required">This field is mandatory.</span>
+    <span *ngIf="formControl.errors.pattern">This field is invalid.</span>
+  </mat-error>
+</ng-content>

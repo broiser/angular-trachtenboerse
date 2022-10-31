@@ -1,0 +1,104 @@
+<div class="form-container">
+  <form [formGroup]="contactForm" (submit)="submit()">
+    <mat-form-field floatLabel="never" appearance="outline">
+      <input matInput placeholder="Name" formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never" appearance="outline">
+      <input
+        matInput
+        placeholder="Adresse"
+        formControlName="address"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never" appearance="outline">
+      <input matInput placeholder="Telefon" formControlName="phone" required />
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never" appearance="outline">
+      <input matInput placeholder="E-Mail" formControlName="email" required />
+    </mat-form-field>
+
+    <ng-container formArrayName="articles">
+      <mat-table [dataSource]="articles.controls">
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.get('id').value }}.
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+          <mat-cell *matCellDef="let element" [formGroup]="element">
+            <mat-form-field floatLabel="never" appearance="outline">
+              <input
+                matInput
+                placeholder="Title"
+                formControlName="title"
+                required
+              />
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="robeSize">
+          <mat-header-cell *matHeaderCellDef> Größe </mat-header-cell>
+          <mat-cell *matCellDef="let element" [formGroup]="element">
+            <mat-form-field floatLabel="never" appearance="outline">
+              <input
+                matInput
+                placeholder="Größe"
+                formControlName="robeSize"
+                required
+              />
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef> Preis </mat-header-cell>
+          <mat-cell *matCellDef="let element" [formGroup]="element">
+            <mat-form-field floatLabel="never" appearance="outline">
+              <input
+                matInput
+                placeholder="Preise"
+                formControlName="price"
+                required
+              />
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef>
+            <button mat-raised-button (click)="addArticle()" type="button">
+              Add
+            </button>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element; let j = index">
+            <button
+              mat-raised-button
+              color="warn"
+              focusable="false"
+              (click)="removeArticle(j)"
+            >
+              <i class="fa fa-times mat-icon"></i> Remove
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </ng-container>
+
+    <button mat-raised-button color="primary" type="submit">Speichern</button>
+  </form>
+</div>

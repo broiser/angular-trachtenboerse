@@ -1,0 +1,23 @@
+<h1>Trachtenbörse</h1>
+<nav>
+  <ul>
+    <li>
+      <a
+        [routerLink]="['/contact', 'new']"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Kontakt anlegen</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/contacts"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Kontakt suchen</a
+      >
+    </li>
+  </ul>
+</nav>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
